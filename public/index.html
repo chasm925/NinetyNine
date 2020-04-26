@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Ninety-Nine</title>
+        <meta charset="utf-8">
+    </head>
+
+    <style>
+        div#name-form {
+            position: absolute;
+            z-index: 100;
+            color: white;
+            top: 350px;
+            left: 250px;
+            text-align: center;
+        }
+    </style>
+
+    <body>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/phaser@3.3.0/dist/phaser.min.js"></script>
+        <script src="js/game.js"></script>
+        
+        <div id="name-form">
+            <input id="nameField" type="text" name="nameField" placeholder="Name" maxlength="12" style="font-size: 24px; width: 200px">
+            <input id="chipsField" type="number" name="chipsField" placeholder="# Chips" min="1" max="4" style="font-size: 24px; width: 100px"> </br></br>
+            <input id="nameButton" onclick="handleNameEntry()"  type="button" name="playButton" value="Play!" style="font-size: 24px; width: 120px;">
+            <input id="observeButton" onclick="handleObserve()" type="button" name="observeButton" value="Observe" style="font-size: 24px; width: 120px;">
+        </div>
+    </body>
+
+</html>
