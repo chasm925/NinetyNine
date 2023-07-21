@@ -1,14 +1,17 @@
-var express = require('express');
-var app = express();
-var server = require('http').Server(app);
-var io = require('socket.io').listen(server);
+import express  from 'express';
+import { Server } from 'socket.io';
+import http from 'http';
 
-var players = {};
-var deck = [];
-var discard = [];
-var playerCards = {}
+const app = express();
+const server = http.Server(app);
+const io = new Server(server);
 
-var state = {
+const players = {};
+const playerCards = {}
+let deck = [];
+let discard = [];
+
+let state = {
   turn: null,
   card: null,
   count: 0,
@@ -16,11 +19,7 @@ var state = {
   inProgress: false
 }
 
-app.use(express.static(__dirname + '/public'));
-
-app.get('/', function (req, res) {
-  res.sendFile(__dirname + '/index.html');
-});
+app.use('/', express.static('public',  { index: 'index.html' }));
 
 io.on('connection', function (socket) {
   console.log('a user connected');
@@ -58,7 +57,7 @@ io.on('connection', function (socket) {
     }
 
     // emit a message to all players to remove this player
-    io.emit('disconnect', socket.id);
+    io.emit('disconnected', socket.id);
 
     // also update state so turn is updated
     io.emit('stateUpdate', state);
@@ -187,7 +186,7 @@ function startRound(io, turn) {
 }
 
 function drawThree() {
-  cards = [];
+  const cards = [];
   for (let index = 0; index < 3; index++) {
     cards.push(draw());
   }
@@ -292,7 +291,7 @@ function createDeck() {
 }
 
 function getFaceValue(face) {
-  faceValues = {
+  const faceValues = {
     "queen": 10,
     'king': 10,
     'jack': 0,
