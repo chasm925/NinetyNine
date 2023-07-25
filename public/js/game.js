@@ -209,15 +209,14 @@ function updatePlayersList(self, players) {
 
     const buffer = 24;
     for (let i = 0; i < player.chips; i++) {
-      // var chip = self.add.sprite(12 + (text.width + buffer*(i+1)), verticalOffset, 'chip');
-      var chip = self.add.sprite((140 - 20) + (buffer*(i+1)), verticalOffset, 'chip');
+      var chip = self.add.sprite((170) + (buffer*(i+1)), verticalOffset, 'chip');
       chip.setOrigin(0, 0);
-      chip.setScale(0.65);
+      chip.setScale(0.70);
       self.playerNames.add(chip);
     }
 
     self.playerNames.add(text);
-    verticalOffset += 24;
+    verticalOffset += 32;
   })
 }
 
